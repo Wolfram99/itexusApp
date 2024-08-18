@@ -32,13 +32,14 @@ public class UserDAOImpl implements UserDAO {
 
 
 
-    public int showAll(){
+    public List<User> showAll(){
         System.out.printf("%s | %s%n", "id", "User Information");
         int serialNumber = 0;
-        for (User user : readObject.readAll()) {
+        List<User> listUsers = readObject.readAll();
+        for (User user : listUsers) {
             System.out.printf("%d | %s%n", ++serialNumber, user.toString());
         }
-        return serialNumber;
+        return listUsers;
     }
 
     public void deleteUser(int id){
@@ -50,6 +51,18 @@ public class UserDAOImpl implements UserDAO {
         }
     }
 
+    public User findUserById(int id){
+        return readObject.readAll().get(id-1);
+    }
+
+    public void showUserInformation(int id){
+        List<User> tempList = readObject.readAll();
+        if(validInputNumber(id, tempList.size())) {
+                OperationsOnUsers.showUserInformation(findUserById(id));
+        }
+
+    }
+    
 
     public void editUser(int id){
 
@@ -74,7 +87,7 @@ public class UserDAOImpl implements UserDAO {
     }
 
     private static boolean validInputNumber(int inputNumber, int numberOfEntries){
-        if(inputNumber-1 >= 0 && inputNumber-1 <= numberOfEntries-1){
+        if(inputNumber - 1 >= 0 && inputNumber - 1 <= numberOfEntries - 1){
             return true;
         }
 

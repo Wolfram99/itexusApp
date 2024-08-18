@@ -16,6 +16,7 @@ public class Main {
 				1) Create User.
 				2) Edit User.
 				3) Delete User.
+				4) Show User by id
 				5) Show all User.
 				6) Exit.
 				""";
@@ -52,6 +53,12 @@ public class Main {
                     dao.deleteUser(sc.nextInt());
 
                     sc.nextLine();
+                }
+                case 4 -> {
+                    System.out.println("Enter the serial number of the user whose information you want to view: ");
+                    dao.showAll();
+                    UserDAOImpl.validInputInteger(sc);
+                    dao.showUserInformation(sc.nextInt());
                 }
                 case 5 -> dao.showAll();
                 case 6 -> {

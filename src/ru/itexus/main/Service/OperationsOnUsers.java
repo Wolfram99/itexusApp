@@ -4,6 +4,7 @@ import ru.itexus.main.CustomException.IncorrectQuantityException;
 import ru.itexus.main.CustomException.ValidException;
 import ru.itexus.main.Models.User;
 
+import java.sql.SQLOutput;
 import java.util.Arrays;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -53,7 +54,13 @@ public class OperationsOnUsers {
         }
         return false;
     }
-
+    public static void  showUserInformation(User user){
+        System.out.println("Name: " + user.getFirstName());
+        System.out.println("Last Name: "+ user.getLastName());
+        System.out.println("Email: "+user.getEmail());
+        System.out.println("List of roles: " + user.getListRoles().toString());
+        System.out.println("List of phone numbers: "+user.getListPhones().toString());
+    }
 
     public static User createUser(Scanner sc) {
         System.out.println(HEADER_CREATE_USER);
@@ -197,4 +204,7 @@ public class OperationsOnUsers {
             }
         }
     }
+
+
+
 }
